@@ -1,6 +1,5 @@
 # Gooogle_Auto (Group Regularization for Zero-inflated Regression Models with Application to Insurance Rate-making)
-Group Regularization for Zero-inflated Regression Models with Application to Insurance Rate-making
-Introduction
+# Introduction
 In many risk analysis problems, covariates are naturally grouped, where variables in the same group
 are either mechanistically related or statistically correlated. Under such settings, variable selection
 must be conducted at both group and individual variable level. Motivated by the widespread
