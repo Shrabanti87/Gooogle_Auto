@@ -85,7 +85,7 @@ This function returns the group selection measure `pgrp.correct` which is the pr
 In this example we generate 40 continuous predictors which are grouped into 5 groups consisting of 8 predictors each. The covariates are generated from multivariate normal distribution with `rho` as the corrrelation parameter of the AR(1) covariance matrix. The following function master.func generates 10 datasets for a given n, rho and phi from ZIP model and fits the google function and calculates median MASE as well percentage of correct group selection for both the count and zero model. The values of the regression coefficients for the count model (beta) and those for the zero model (gamma) are given inside the function. 
 
 ```
-Load the packages
+## Load the packages
 
 require(MASS)
 require(forecast)
@@ -95,30 +95,30 @@ require(dummies)
 ```
 
 ```
-   Specify the true parameter values
+ ## Specify the true parameter values
   
-  count model: beta<-c(5,-1, -0.5, -0.25, -0.1, 0.1, 0.25, 0.5, 0.75, rep(0.2,8), rep(0,24))    
+ count model: beta<-c(5,-1, -0.5, -0.25, -0.1, 0.1, 0.25, 0.5, 0.75, rep(0.2,8), rep(0,24))    
     
-  zero model: gamma<-c(-1,-0.4, -0.3, -0.2, -0.1, 0.1, 0.2, 0.3, 0.4, rep(0.2,8), rep(0,24))
-  For phi=0.3, gamma_0 (intercept) of the zero model is -1
+ zero model: gamma<-c(-1,-0.4, -0.3, -0.2, -0.1, 0.1, 0.2, 0.3, 0.4, rep(0.2,8), rep(0,24))
+ For phi=0.3, gamma_0 (intercept) of the zero model is -1
  
-   group: (8,8,8,8,8)
+ group: (8,8,8,8,8)
    ```
     
   ```
-  Generate the list of datasets
+ ## Generate the list of datasets
   
   data.list<-datagen.sim.all(n=200,beta=beta,gamma=gamma,rho=0.4,phi=0.3,family="negbin",sim=1,ITER=10)
   ```
   
   ```
-  Calculate MASE
+ ## Calculate MASE
   
   measures<-measures.summary(n=200,data.list=data.list,method="gBridge",ITER=10,group=group,family="negbin")
   ```
   
   ```
-  Calculate Percentage of correct group selection for the count and zero model
+  ## Calculate Percentage of correct group selection for the count and zero model
   
   betahat<-measures$betahat
   gammahat<-measures$gammahat
@@ -136,7 +136,7 @@ require(dummies)
   ```
 
  ```
- Output 
+ ## Output 
       MASE corr_group_count corr_group_zero
 1 0.99965                1             0.8
 ```
