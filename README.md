@@ -84,7 +84,8 @@ This function returns the group selection measure `pgrp.correct` which is the pr
 ## Example 1
 In this example we generate 40 continuous predictors which are grouped into 5 groups consisting of 8 predictors each. The covariates are generated from multivariate normal distribution with `rho` as the corrrelation parameter of the AR(1) covariance matrix. The following function master.func generates 10 datasets for a given n, rho and phi from ZIP model and fits the google function and calculates median MASE as well percentage of correct group selection for both the count and zero model. The values of the regression coefficients for the count model (beta) and those for the zero model (gamma) are given inside the function. 
 
-```Load the packages
+```
+Load the packages
 require(MASS)
 require(forecast)
 require(Gooogle)
