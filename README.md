@@ -118,7 +118,7 @@ require(dummies)
   ```
   
   ```
-  ## Calculate Percentage of correct group selection for the count and zero model
+  ## Calculate the Percentage of correct group selection for both the count and zero model
   
   betahat<-measures$betahat
   gammahat<-measures$gammahat
