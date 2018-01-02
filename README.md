@@ -30,7 +30,7 @@ ngrp: Number of covariates in each group (constant for this example)
 beta: True regression coeffficients in the count model
 gamma: True regression coeffficients in the zero model
 rho: Correlation parameter of AR(1) of the covariance matrix for multivariate normal distribution
-sim: Takes "1" for simulation 1, else takes "2"
+sim: Takes "1" for simulation 1, else takes "2".
 family: It specifies the distribution of the count model which is "Poisson" in this case. 
 
 These functions generate the  dataset, zero-inflated outcome variable, covariates for the count model (X) which is assumed to be equal to that of the zero model (Z), and the proportion of zero inflation.
