@@ -19,10 +19,10 @@ We conduct two extensive simulation studies to investigate the statistical prope
 
 ## List of Functions
 
-### Data generating function: `datagen_sim1.R`
-This R file contains two functions described below:
+### Data generating function: `datagen_sim.R`
+This R file contains three functions described below:
 
-1. datagen.sim1.func: This is the data generating function which generates one dataset according to the specified parameters. This function generates the covariates for the count model (X) which is assumed to be equal to that of the zero model (Z). It takes the following arguments:
+1. datagen.sim1.func & datage.sim2.func: These are the data generating functions for simulation 1 and 2 respectively which generate one dataset according to the specified parameters. 
 
 n: sample size in each of training and testing group
 p: Number of covariates
@@ -30,13 +30,12 @@ ngrp: Number of covariates in each group (constant for this example)
 beta: True regression coeffficients in the count model
 gamma: True regression coeffficients in the zero model
 rho: Correlation parameter of AR(1) of the covariance matrix for multivariate normal distribution
+sim: Takes "1" for simulation 1, else takes "2"
 family: It specifies the distribution of the count model which is "Poisson" in this case. 
 
-The function outputs the following in the list form: return(list(data=data,yvar="y",xvars=xvars,zvars=zvars,zeroinfl=zeroinfl))
+These functions generate the  dataset, zero-inflated outcome variable, covariates for the count model (X) which is assumed to be equal to that of the zero model (Z), and the proportion of zero inflation.
 
-data: dataset; yvar: the zero-inflated outcome variable, xvars: covariates for the count model; zvars=xvars: covariates for the zero model; zeroinfl: proportion of zero inflation
-
-2. datagen.sim1.all<-function(n,p,ngrp,beta,gamma,rho,family,ITER): This function calls the function datagen.sim1.func "ITER" times to generate the simulated data set "ITER" times for a given set of parameters. It outputs all the datasets in the list form `data.list`.
+2. datagen.sim.all<-function(n,p,ngrp,beta,gamma,rho,family,ITER): This function calls the function datagen.sim1.func "ITER" times to generate the simulated data set "ITER" times for a given set of parameters. It outputs all the datasets in the list form `data.list`.
 
 ### Function to fit the gooogle method on the training dataset: `fit_method`
 This R file contains the function `fit.method` which takes the the following as arguments:
@@ -44,6 +43,7 @@ This R file contains the function `fit.method` which takes the the following as 
 dataset: generated dataset using datagen.sim1.func
 yvar,xvars,zvars: corresponding variables
 method: `EM_LASSO` or `gbridge` 
+group: grouping of the covariates
 dist : "Poisson"
 
 Depending on the method specified in the argument, this function calls the gooogle function from the Gooogle package to fit the zero inflated dataset with grouped covariates or calls the function `func_EMLasso` (also present in this R file) which fits the data with `Lasso` penalty using the zipath function. The functon `fit.method` outputs the fitted coefficients for count model and zero model along with the AIC, BIC and loglikelihood of the zero-inflated model.
@@ -66,6 +66,7 @@ n:  Sample size in the training dataset
 data.list: output of datagen.sim1.all
 method: `EM_LASSO` or `gbridge` 
 ITER: number of simulations
+group: grouping of the covariates
 family: "negbin"
 
 This function fits the gooogle method to the training part of a dataset in data.list and calculate the predicted value using the fitted coefficients from the test data. It calls the function `measures.func` to calculate MASE. This is repeated for "ITER" number of datasets and and outputs the vector of `MASE` from all the datasets.
@@ -76,7 +77,7 @@ This R file contains the function `grpresult.func` which takes the following arg
 
 betahat: Fitted value of the regression coefficients
 betatrue: True value of the regression coefficients
-size: Size of each group
+sim: Takes "1" for simulation 1, else takes "2"
 
 This function returns the group selection measure `pgrp.correct` which is the proportion of groups correctly selected. 
 
