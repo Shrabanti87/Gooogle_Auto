@@ -78,5 +78,5 @@ betahat: Fitted value of the regression coefficients
 betatrue: True value of the regression coefficients
 size: Size of each group
 
-This function returns the group selection measure pgrp.correct which is the proportion of groups correctly selected. 
+This function returns the group selection measure `pgrp.correct` which is the proportion of groups correctly selected. 
 
