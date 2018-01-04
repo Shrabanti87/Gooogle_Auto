@@ -43,7 +43,7 @@ This R file contains the function `fit.method` which takes the the following as 
 dataset: generated dataset using datagen.sim1.func
 yvar,xvars,zvars: corresponding variables
 method: `EM_LASSO` or `gbridge` 
-group: grouping of the covariates
+group: The vector specifying grouping structure of the covariates
 dist : "Poisson"
 
 Depending on the method specified in the argument, this function calls the gooogle function from the Gooogle package to fit the zero inflated dataset with grouped covariates or calls the function `func_EMLasso` (also present in this R file) which fits the data with `Lasso` penalty using the zipath function. The functon `fit.method` outputs the fitted coefficients for count model and zero model along with the AIC, BIC and loglikelihood of the zero-inflated model.
@@ -138,5 +138,45 @@ require(dummies)
  ```
  ## Output 
       MASE corr_group_count corr_group_zero
-1 0.99965                1             0.8
+  0.99965                1             0.8
 ```
+## Real Data Example
+
+We illustrate our proposal by re-analyzing the auto insurance claim dataset from SAS Enterprise Miner database. The response variable of interest (y) is the aggregate claim loss of an auto insurance policy. Considering only policy records corresponding to the new customers the reduced dataset has 2,812 observations with 56 predictors being grouped into 21 groups of different group sizes. For the comparison of Gooogle methods with EMLasso we employ a repeated 5-fold cross validation (CV) procedure in which the dataset is randomly partitioned into 5 equal folds, iteratively taking each fold as the test set and the remaining set as the trainng set. We fit the models on the training sets and predictions are based on the test sets. We calculate average and median of the Mean Absolute Scaled Error (MASE) as the metric of evaluation, calculated over 100 iterations. 
+
+## Function
+
+The R file realdata.R contains two functions which are described below:
+
+1) The function fit.out fits gBridge/EMLasso on the training dataset and obtains the regression coefficients for the count as well as the zero model corresponding to the minimum BIC. It takes the following arguments:
+
+* train: Training data
+* test: Test data
+* yvar: The name of the outcome variable
+* xvars: The name of the predictor variables for the count model
+* zvars: The name of the predictor variables for the zero model
+* group: The vector specifying grouping structure of the covariates
+* penalty: "gBridge" or "EMLasso"
+
+The function outputs the predicted value of the outcome variable and outcome variable from the test and the training set.
+
+2) The function realdata.R takes the following arguments:
+
+* data: The real auto insurance dataset 
+* yvar, xvars, zvars: The name of the corresponding variables
+* cv.iter: Number of iteration for calculating MASE using 5-fold CV mechanism
+* k.fold: Number of CV folds (here it is 5)
+* penalty: "gBridge" or "EMLasso"
+
+This function forms the training and test data set iteratively in the 5-fold CV for every dataset and calls the function fit.out and using the output of the fit.out it calculates MASE using the function accuracy{forecast}.
+
+The following codes can be used to obtain MASE of Gooogle and EM methods respecively.
+
+```
+result.gooogle<-realdata.func(data=data,yvar=yvar,xvars=xvars,zvars=zvars,cv.iter=5,k.fold=5,seedval=123,method="Gooogle")
+result.em<-realdata.func(data=data,yvar=yvar,xvars=xvars,zvars=zvars,cv.iter=5,k.fold=5,seedval=123,method="EMLasso")
+```
+
+
+
+
