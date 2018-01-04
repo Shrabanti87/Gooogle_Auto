@@ -35,7 +35,7 @@ This R file contains three functions described below:
 
 These functions generate the  dataset, zero-inflated outcome variable, covariates for the count model (X) which is assumed to be equal to that of the zero model (Z), and the proportion of zero inflation.
 
-2. datagen.sim.all<-function(n,p,ngrp,beta,gamma,rho,family,ITER): This function calls the function datagen.sim1.func "ITER" times to generate the simulated data set "ITER" times for a given set of parameters. It outputs all the datasets in the list form `data.list`.
+2. datagen.sim.all: This function calls the function datagen.sim1.func "ITER" times to generate the simulated data set "ITER" times for a given set of parameters. It outputs all the datasets in the list form `data.list`.
 
 ### Function to fit the gooogle method on the training dataset: `fit_method`
 This R file contains the function `fit.method` which takes the the following as arguments:
