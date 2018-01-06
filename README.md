@@ -57,23 +57,91 @@ require(dummies)
   
   return(measures)
 }
-
-master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.3,family="negbin",method="grLasso",ITER=10)
   ```
 
  ```
- ## Output for phi=0.3
+ ## phi=0.3
+
+ master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.3,family="negbin",method="grLasso",sim=1,ITER=10)
+ 
+ Output:
            MAE      MASE 
        144.87630  0.71405 
 
- ## Output for phi=0.4
+
+## phi=0.4
+
+ master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.4,family="negbin",method="grLasso",sim=1,ITER=10)
+ 
+ Output:
            MAE     MASE 
        103.6743   0.6996 
  
- ## Output for phi=0.5
-           MAE    MASE 
-        85.2746  0.6618 
+## phi=0.5
+
+ master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.5,family="negbin",method="grLasso",sim=1,ITER=10)
+ 
+ Output:
+          MAE    MASE 
+        85.2746  0.6618      
 ```
+
+### Example 2
+
+In example 2 we generate 6 continuous covariates each of which forms a singleton group. Four more variables (two each from X3 and X6) are further polynomially constructed, giving rise to a total of 10 continuous predictors. For constructing the categorical variables, we generate 5 continuous variables from a multivariate normal distribution and quantile-discretize each of them into 5 new variables based on their quintiles. This leads to a combination of 20 categorical predictors with 5 non-overlapping groups of equal size.
+
+```
+## Specify the true parameter values
+
+For count model: 
+betag1<-c(0)
+betag2<-c(0)
+betag3<-c(-0.1,0.2,0.1)
+betag4<-c(0)
+betag5<-c(0)
+betag6<-c(2/3,-1,1/3)
+betag7<-c(-2,-1,1,2)
+betag8<-c(0,0,0,0)
+betag9<-c(0,0,0,0)
+betag10<-rep(0,4)
+betag11<-c(0,0,0,0)
+
+beta<-c(5,betag1,betag2,betag3,betag4,betag5,betag6,betag7,betag8,betag9,betag10,betag11)
+
+For zero model:
+phi=0.3: gamma<-c(-1.4,beta[-1])
+phi=0.4: gamma<-c(-.7,beta[-1])
+phi=0.5: gamma<-c(-.15,beta[-1])
+```
+
+```
+We run the master.func to calculate MAE and MASE. Below we give the code and the output:
+
+ ## phi=0.3
+
+ master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.3,family="negbin",method="grLasso",sim=2,ITER=10)
+ 
+ Output:
+           MAE      MASE 
+       144.87630  0.71405 
+
+ ## phi=0.4
+
+ master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.4,family="negbin",method="grLasso",sim=2,ITER=10)
+ 
+ Output:
+           MAE     MASE 
+       103.6743   0.6996 
+ 
+ ## phi=0.5
+
+ master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.5,family="negbin",method="grLasso",sim=2,ITER=10)
+ 
+ Output:
+          MAE    MASE 
+        85.2746  0.6618
+```
+
 ## Real Data Example
 
 We illustrate our proposal by re-analyzing the auto insurance claim dataset from SAS Enterprise Miner database. The response variable of interest (y) is the aggregate claim loss of an auto insurance policy. Considering only policy records corresponding to the new customers the reduced dataset has 2,812 observations with 56 predictors being grouped into 21 groups of different group sizes. For the comparison of Gooogle methods with EMLasso we employ a repeated 5-fold cross validation (CV) procedure in which the dataset is randomly partitioned into 5 equal folds, iteratively taking each fold as the test set and the remaining set as the trainng set. We fit the models on the training sets and predictions are based on the test sets. We calculate average and median of the Mean Absolute Scaled Error (MASE) as the metric of evaluation, calculated over 100 iterations. 
