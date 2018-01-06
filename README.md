@@ -1,4 +1,4 @@
-# Simulation Codes for Gooogle_Doc (Group Regularization for Zero-inflated Regression Models with Application to Healthcare Demand in Germany)
+# Simulation Codes for the manuscript "Group Regularization for Zero-inflated Regression Models with Application to Healthcare Demand in Germany"
 
 
 ### Example 1
