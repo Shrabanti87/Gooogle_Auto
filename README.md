@@ -63,37 +63,32 @@ require(dummies)
  ## phi=0.3
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.3,family="negbin",method="grLasso",sim=1,ITER=10)
- 
+ ```
  |Method | MAE     | MASE  |
  |-------|:-------:|------:|
  |grLasso|144.8763 |0.7141 | 
  |EMLasso|251.2550 |1.2517 |
           
-        
+```        
 ## phi=0.4
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.4,family="negbin",method="grLasso",sim=1,ITER=10)
- 
- Output:
-           MAE     MASE 
-       103.6743   0.6996
-       
- EM Output:
-           MAE     MASE      
-        181.7793   1.0558       
- 
+ ```
+ |Method | MAE     | MASE  |
+ |-------|:-------:|------:|
+ |grLasso|103.6743 |0.6996 | 
+ |EMLasso|181.7793 |1.0558 |
+                  
+ ```
 ## phi=0.5
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.5,family="negbin",method="grLasso",sim=1,ITER=10)
- 
- Output:
-          MAE    MASE 
-        85.2746  0.6618  
-        
- EM Output:
-          MAE    MASE        
-        136.2116   1.1475 
-```
+ ```
+ |Method | MAE     | MASE  |
+ |-------|:-------:|------:|
+ |grLasso| 85.2746 |0.6618 | 
+ |EMLasso|136.2116 |1.1475  |
+           
 
 ### Example 2
 
