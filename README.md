@@ -67,15 +67,21 @@ require(dummies)
  Output:
            MAE      MASE 
        144.87630  0.71405 
-
-
+EMOutput:
+           MAE      MASE 
+        251.2550   1.2517 
+        
 ## phi=0.4
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.4,family="negbin",method="grLasso",sim=1,ITER=10)
  
  Output:
            MAE     MASE 
-       103.6743   0.6996 
+       103.6743   0.6996
+       
+ EM Output:
+           MAE     MASE      
+        181.7793   1.0558       
  
 ## phi=0.5
 
@@ -83,7 +89,11 @@ require(dummies)
  
  Output:
           MAE    MASE 
-        85.2746  0.6618      
+        85.2746  0.6618  
+        
+ EM Output:
+          MAE    MASE        
+        136.2116   1.1475 
 ```
 
 ### Example 2
@@ -124,22 +134,34 @@ We run the master.func to calculate MAE and MASE. Below we give the code and the
  Output:
            MAE      MASE 
        144.87630  0.71405 
+       
+ EM Output:      
+      MAE      MASE 
+256.19715   1.03615 
+
 
  ## phi=0.4
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.4,family="negbin",method="grLasso",sim=2,ITER=10)
  
  Output:
+            MAE     MASE 
+        125.7181   0.8215 
+ Output EM:
            MAE     MASE 
-       103.6743   0.6996 
- 
+       189.3503   1.1017 
+
  ## phi=0.5
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.5,family="negbin",method="grLasso",sim=2,ITER=10)
  
- Output:
+ Output:                                      
           MAE    MASE 
-        85.2746  0.6618
+        82.1168  0.9727 
+        
+        output EM
+     MAE     MASE 
+142.1029   1.1952 
 ```
 
 ## Real Data Example
