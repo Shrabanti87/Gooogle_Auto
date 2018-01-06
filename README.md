@@ -64,12 +64,11 @@ require(dummies)
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.3,family="negbin",method="grLasso",sim=1,ITER=10)
  
- Output:
-           MAE      MASE 
-       144.87630  0.71405 
-EMOutput:
-           MAE      MASE 
-        251.2550   1.2517 
+ |Method | MAE     | MASE  |
+ |-------|:-------:|------:|
+ |grLasso|144.8763 |0.7141 | 
+ |EMLasso|251.2550 |1.2517 |
+          
         
 ## phi=0.4
 
