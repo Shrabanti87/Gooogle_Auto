@@ -1,4 +1,4 @@
-# Simulation Codes for Gooogle_Auto (Group Regularization for Zero-inflated Regression Models with Application to Insurance Rate-making)
+# Simulation Codes for Gooogle_Doc (Group Regularization for Zero-inflated Regression Models with Application to Healthcare Demand in Germany)
 
 
 ### Example 1
@@ -95,6 +95,8 @@ require(dummies)
 In example 2 we generate 6 continuous covariates each of which forms a singleton group. Four more variables (two each from X3 and X6) are further polynomially constructed, giving rise to a total of 10 continuous predictors. For constructing the categorical variables, we generate 5 continuous variables from a multivariate normal distribution and quantile-discretize each of them into 5 new variables based on their quintiles. This leads to a combination of 20 categorical predictors with 5 non-overlapping groups of equal size.
 
 ```
+## Load all the required packages as in Example 1
+
 ## Specify the true parameter values
 
 For count model: 
