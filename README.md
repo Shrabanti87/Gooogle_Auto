@@ -60,34 +60,34 @@ require(dummies)
   ```
 
  ```
- ## phi=0.3
+  ## phi=0.3
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.3,family="negbin",method="grLasso",sim=1,ITER=10)
  ```
  |Method | MAE     | MASE  |
  |-------|:-------:|------:|
- |grLasso|144.8763 |0.7141 | 
- |EMLasso|251.2550 |1.2517 |
-          
-```        
-## phi=0.4
+ |grLasso|148.7548 |0.7341 | 
+ |EMLasso|232.3708 |1.1582|
+ 
+ ```
+ ## phi=0.4
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.4,family="negbin",method="grLasso",sim=1,ITER=10)
  ```
  |Method | MAE     | MASE  |
  |-------|:-------:|------:|
- |grLasso|103.6743 |0.6996 | 
- |EMLasso|181.7793 |1.0558 |
-                  
+ |grLasso|137.4921 |0.6958 | 
+ |EMLasso|192.1370 |0.8552 |
+ 
  ```
-## phi=0.5
+ ## phi=0.5
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.5,family="negbin",method="grLasso",sim=1,ITER=10)
  ```
  |Method | MAE     | MASE  |
  |-------|:-------:|------:|
- |grLasso| 85.2746 |0.6618 | 
- |EMLasso|136.2116 |1.1475  |
+ |grLasso|100.7777 |0.7067 | 
+ |EMLasso|160.3597 |0.8542 |
            
 
 ### Example 2
@@ -124,68 +124,48 @@ We run the master.func to calculate MAE and MASE. Below we give the code and the
  ## phi=0.3
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.3,family="negbin",method="grLasso",sim=2,ITER=10)
+ ```
+ |Method | MAE     | MASE  |
+ |-------|:-------:|------:|
+ |grLasso|145.8202 |0.5172 | 
+ |EMLasso|225.4927 |0.9596|
  
- Output:
-           MAE      MASE 
-       144.87630  0.71405 
-       
- EM Output:      
-      MAE      MASE 
-256.19715   1.03615 
-
-
+ ```
  ## phi=0.4
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.4,family="negbin",method="grLasso",sim=2,ITER=10)
+ ```
+ |Method | MAE     | MASE  |
+ |-------|:-------:|------:|
+ |grLasso|127.3018 |0.8545 | 
+ |EMLasso|170.8427 |0.9443 |
  
- Output:
-            MAE     MASE 
-        125.7181   0.8215 
- Output EM:
-           MAE     MASE 
-       189.3503   1.1017 
-
+ ```
  ## phi=0.5
 
  master.func(n=200,beta=beta,gamma=gamma,rho=0,phi=0.5,family="negbin",method="grLasso",sim=2,ITER=10)
+ ```
+ |Method | MAE     | MASE  |
+ |-------|:-------:|------:|
+ |grLasso|85.2794  |0.7185 | 
+ |EMLasso|150.7711 |1.1151 |
  
- Output:                                      
-          MAE    MASE 
-        82.1168  0.9727 
-        
-        output EM
-     MAE     MASE 
-142.1029   1.1952 
-```
-
+   
 ## Real Data Example
 
 We illustrate our proposal by re-analyzing the auto insurance claim dataset from SAS Enterprise Miner database. The response variable of interest (y) is the aggregate claim loss of an auto insurance policy. Considering only policy records corresponding to the new customers the reduced dataset has 2,812 observations with 56 predictors being grouped into 21 groups of different group sizes. For the comparison of Gooogle methods with EMLasso we employ a repeated 5-fold cross validation (CV) procedure in which the dataset is randomly partitioned into 5 equal folds, iteratively taking each fold as the test set and the remaining set as the trainng set. We fit the models on the training sets and predictions are based on the test sets. We calculate average and median of the Mean Absolute Scaled Error (MASE) as the metric of evaluation, calculated over 100 iterations. 
 
 ```
-Here is the code for calculating the MAE and MASE using 5-fold CV for the Gooogle method "gBridge" and for "EMLasso" for 5 iterations:
+Here is the code for calculating the median of MAE and MASE over 5 iterations using 5-fold CV for the Gooogle method "gBridge" and for "EMLasso" 
 
 result.gooogle<-realdata.func(data=data,yvar=yvar,xvars=xvars,zvars=zvars,cv.iter=5,k.fold=5,seedval=123,method="Gooogle")
 
 result.em<-realdata.func(data=data,yvar=yvar,xvars=xvars,zvars=zvars,cv.iter=5,k.fold=5,seedval=123,method="EMLasso")
 ```
-```
-Here is the output of "gBridge" :
 
-     iter    MAE     MASE       
-[1,]    1 2.767285 0.8916563         
-[2,]    2 2.984444 0.9616278        
-[3,]    3 2.986073 0.9621526        
-[4,]    4 2.924540 0.9423260        
-[5,]    5 3.142137 1.0124386
-
-Here is the output of "EMLasso" :
-
-     iter    MAE     MASE
-[1,]    1 3.088494 0.995154
-[2,]    2 3.122427 1.006088
-[3,]    3 3.362784 1.083534
-[4,]    4 3.227218 1.039853
-[5,]    5 3.187387 1.027019
-
-```
+ |Method | MAE     | MASE  |
+ |-------|:-------:|------:|
+ |gBridge|2.9844   |0.9616 | 
+ |EMLasso|3.1874   |1.0270 |
+ 
+ 
