@@ -1,4 +1,4 @@
-# Simulation Codes for the manuscript "Group Regularization for Zero-inflated Regression Models with Application to Healthcare Demand in Germany"
+# Simulation Codes for the manuscript "Group Regularization for Zero-inflated Regression Models with Application to Insurance Rate Making"
 
 
 ### Example 1
